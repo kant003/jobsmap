@@ -2,11 +2,11 @@ import express from "express";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
-import * as url from 'url';
-import path from 'path';
+//import * as url from 'url';
+//import path from 'path';
 import { getOffers, getLatLon, filterString } from "./services.js";
-const __filename = url.fileURLToPath(import.meta.url);
-    const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+//const __filename = url.fileURLToPath(import.meta.url);
+//    const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 
 dotenv.config();
@@ -27,8 +27,9 @@ app.get("/hello", (req, res) => {
 
 app.get("/", (req, res) => {
   //res.status(200).send("Bienvenido al API de infobos JobsMap");
-  const filePath = path.resolve(__dirname, 'map.html');
-  res.sendFile(filePath);
+  //const filePath = path.resolve(__dirname, './map.html');
+  //res.sendFile(filePath);
+  res.redirect('/map.html');
 
 });
 
@@ -50,7 +51,7 @@ app.get("/jobs", async (req, res) => {
     item.city = filterString(item.city)
     item.province.value = filterString(item.province.value)
     
-    console.    log(item.province.value, item.city)
+    //console.log(item.province.value, item.city)
 
     return {
       title: item.title,
