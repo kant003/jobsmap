@@ -62,7 +62,6 @@ app.get("/jobs", async (req, res) => {
   });
 
   for(let item of data){
-      console.log(item.city, item.province)
     const pos = await getLatLon(`${item.city} ${item.province}`);
     //onst pos={lat: 10, lon: 11}
     item.lat=pos.lat

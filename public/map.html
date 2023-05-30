@@ -57,7 +57,7 @@
         window.history.pushState(
           {},
           "",
-          `http://localhost:3000/map.html?category=${category2}`
+          `/map.html?category=${category2}`
         );
         window.location.reload();
 
@@ -79,7 +79,7 @@
             window.history.pushState(
             {},
             "",
-            `http://localhost:3000/map.html?category=${category}`
+            `/map.html?category=${category}`
             );
             //category = localStorage.getItem("category");
         }else{
@@ -112,8 +112,8 @@
           console.log("gettng", category);
 
           console.log();
-         // const response = await fetch('/jobs?category='+category)
-          const response = await fetch("test.json?category=" + category);
+          const response = await fetch('/jobs?category='+category)
+          //const response = await fetch("test.json?category=" + category);
           const data = await response.json();
           //    return [
           //      {lat: 42.23282, lng:-8.72264, count: 50, sensorID:1},
