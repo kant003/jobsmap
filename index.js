@@ -2,12 +2,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
-//import * as url from 'url';
-//import path from 'path';
 import { getOffers, getLatLon, filterString } from "./services.js";
-//const __filename = url.fileURLToPath(import.meta.url);
-//    const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-
 
 dotenv.config();
 const app = express();
@@ -16,42 +11,26 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 app.use(morgan("tiny"));
 
 app.get("/hello", (req, res) => {
-    res.status(200).send("Bienvenido al API de infobos JobsMap");
-  
-  });
+  res.status(200).send("Bienvenido al API de infobos JobsMap");
+});
 
 app.get("/", (req, res) => {
-  //res.status(200).send("Bienvenido al API de infobos JobsMap");
-  //const filePath = path.resolve(__dirname, './map.html');
-  //res.sendFile(filePath);
-  res.redirect('/map.html');
-
+  res.redirect("/map.html");
 });
 
 app.get("/jobs", async (req, res) => {
-    // obtenemos el query category
-    const category = req.query.category || 'informatica-telecomunicaciones';
-    // si no se especifica la category usar por defecto la category informatica-telecomunicaciones
-    
-    
+  const category = req.query.category || "informatica-telecomunicaciones";
+  console.log("buscando:", category);
 
-    console.log('buscando:',category)
-
-  //console.log(process.env.INFOJOBS_TOKEN)
   const offer = await getOffers(category);
-  //console.log(offer)
-  //   res.status(200).send(pos)
   let data = offer.items.map((item) => {
-   
-    item.city = filterString(item.city)
-    item.province.value = filterString(item.province.value)
-    
-    //console.log(item.province.value, item.city)
+    item.city = filterString(item.city);
+    item.province.value = filterString(item.province.value);
 
     return {
       title: item.title,
@@ -62,16 +41,15 @@ app.get("/jobs", async (req, res) => {
     };
   });
 
-  for(let item of data){
+  for (let item of data) {
     const pos = await getLatLon(`${item.city} ${item.province}`);
     //onst pos={lat: 10, lon: 11}
-    item.lat=pos.lat
-    item.lng=pos.lon
+    item.lat = pos.lat;
+    item.lng = pos.lon;
   }
 
   res.status(200).send(data);
 });
-
 
 async function main() {
   await app.listen(process.env.PORT);

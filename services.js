@@ -16,7 +16,6 @@ async function getLatLon(location) {
     const result = await response.json();
     return { lat: result.location.lat, lon: result.location.lon };
   } catch (error) {
-    //console.error('error',error);
     return { lat: 0, lon: 0 };
   }
 }
