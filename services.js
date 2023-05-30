@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 async function getLatLon(location) {
   const url =
     "https://weatherapi-com.p.rapidapi.com/current.json?q=" + location;
