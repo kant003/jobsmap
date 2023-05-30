@@ -32,7 +32,11 @@ app.get("/", (req, res) => {
 
 app.get("/jobs", async (req, res) => {
     // obtenemos el query category
-    const category = req.query.category;
+    const category = req.query.category || 'informatica-telecomunicaciones';
+    // si no se especifica la category usar por defecto la category informatica-telecomunicaciones
+    
+    
+
     console.log('buscando:',category)
 
   //console.log(process.env.INFOJOBS_TOKEN)
