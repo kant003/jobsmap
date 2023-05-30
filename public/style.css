@@ -1,15 +1,36 @@
 body {
-    margin: 0;
-    padding: 0;
-  }
-  .container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  #map {
-    height: 100vh;
-  }
-  select {
-  }
+  margin: 0;
+  padding: 0;
+
+  background: #000000; 
+  color: #FFFFFF;
+  font-family: 'roboto';
+  font-size: 2em;
+}
+h1{
+  font-family: 'roboto';
+  font-size: 55px;
+  margin: 0.5em;
+  background: #0040ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #0040ff, #81a4e9); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #0040ff, #81a4e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#map {
+  height: 100vh;
+}
+select {
+  font-size: 20px;
+}
+#loading{
+  font-size: 30px;
+  color: green;
+}
